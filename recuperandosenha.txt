@@ -1,0 +1,3 @@
+ TXT Record
+ 	TXT Name / Host	@ (or) leave it blank
+ 	TXT Value	zoho-verification=Q43Z4OZEA4.zmverify.zoho.com
