@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RDF Express — Frete e Transporte | Taboão da Serra · Grande SP</title>
-    <meta name="description" content="Frete e transporte com moto, carro, utilitário e caminhão HR. Atendemos toda a Grande São Paulo. Solicite orçamento pelo WhatsApp.">
+
+    <title>Frete e Transporte em Taboão da Serra e Grande SP | RDF Express</title>
+    <meta name="description" content="Frete e transporte em Taboão da Serra e toda a Grande São Paulo. Motoboy, carro, utilitário e caminhão HR para cargas, mudanças e materiais. Orçamento na hora pelo WhatsApp.">
+    <link rel="canonical" href="https://rdfexpress.netlify.app/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="RDF Express">
+
+    <!-- Localização (ajuda buscas do tipo "frete perto de mim") -->
+    <meta name="geo.region" content="BR-SP">
+    <meta name="geo.placename" content="Taboão da Serra, São Paulo">
+
+    <!-- Prévia ao compartilhar o link (WhatsApp, Facebook, Instagram) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="RDF Express">
+    <meta property="og:url" content="https://rdfexpress.netlify.app/">
+    <meta property="og:title" content="RDF Express — Frete e Transporte em Taboão da Serra e Grande SP">
+    <meta property="og:description" content="Motoboy, carro, utilitário e caminhão HR para cargas, mudanças e materiais. Atendimento direto pelo WhatsApp: (11) 98421-1001.">
+    <meta property="og:image" content="https://rdfexpress.netlify.app/Img/preview-whatsapp.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Carga embalada e amarrada em veículo da RDF Express">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RDF Express — Frete e Transporte em Taboão da Serra e Grande SP">
+    <meta name="twitter:description" content="Motoboy, carro, utilitário e caminhão HR. Orçamento pelo WhatsApp: (11) 98421-1001.">
+    <meta name="twitter:image" content="https://rdfexpress.netlify.app/Img/preview-whatsapp.jpg">
+
+    <!-- Ícone da aba e do atalho no celular -->
+    <link rel="icon" href="Img/icone-512.png" sizes="512x512" type="image/png">
+    <link rel="apple-touch-icon" href="Img/icone-180.png">
+    <meta name="theme-color" content="#111d33">
+
+    <!-- Carrega a foto do topo o quanto antes (velocidade da primeira tela) -->
+    <link rel="preload" as="image" href="Img/hero-frete-transporte-mobile.webp" media="(max-width: 700px)" fetchpriority="high">
+    <link rel="preload" as="image" href="Img/hero-frete-transporte.webp" media="(min-width: 701px)" fetchpriority="high">
+
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -39,6 +73,13 @@
             transition: opacity 0.55s ease, transform 0.55s ease;
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Quem pediu menos animação no aparelho vê tudo parado e visível */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+        }
 
         /* ────────── HEADER ────────── */
         header {
@@ -114,9 +155,15 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('Img/IMG_20240924_130356.jpg');
+            background-color: var(--navy-dark);
+            background-image: url('Img/hero-frete-transporte-mobile.webp');
             background-size: cover;
             background-position: center 35%;
+        }
+
+        /* Telas maiores recebem a foto em alta; o celular fica com a leve */
+        @media (min-width: 701px) {
+            .hero-bg { background-image: url('Img/hero-frete-transporte.webp'); }
         }
 
         .hero-bg::after {
@@ -406,8 +453,52 @@
             stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
         }
 
-        .why-item h4 { color: white; font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
+        .why-item h3 { color: white; font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
         .why-item p  { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.65; }
+
+        /* ────────── FAQ ────────── */
+        .faq-section { background: white; }
+
+        .faq-list { max-width: 820px; }
+
+        .faq-item {
+            border: 1px solid var(--gray-100);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            background: white;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .faq-item[open] { border-color: rgba(232,132,26,0.45); box-shadow: 0 6px 22px rgba(0,0,0,0.06); }
+
+        .faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 20px 22px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary:hover { color: var(--orange-dark); }
+        .faq-item summary:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; border-radius: 10px; }
+
+        .faq-item summary::after {
+            content: '+';
+            color: var(--orange);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .faq-item[open] summary::after { content: '−'; }
+
+        .faq-answer { padding: 0 22px 22px; color: var(--gray-500); font-size: 0.95rem; line-height: 1.75; }
+        .faq-answer a { color: var(--orange-dark); font-weight: 600; }
 
         /* ────────── CONTACT ────────── */
         .contact-section { background: var(--gray-50); }
@@ -575,6 +666,79 @@
             .cta-box { padding: 32px 24px; }
         }
     </style>
+
+    <!-- Sem JavaScript, o conteúdo aparece igual (o Google e leitores de tela agradecem) -->
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+
+    <!-- ───────────────────────────────────────────────────────────────
+         DADOS DA EMPRESA PARA O GOOGLE (não aparecem na tela)
+         É isto que liga o site ao perfil do Google Meu Negócio e faz o
+         telefone, endereço e horário aparecerem direto no resultado da busca.
+         Mudou telefone, endereço ou horário? Mude AQUI TAMBÉM.
+    ─────────────────────────────────────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MovingCompany",
+      "@id": "https://rdfexpress.netlify.app/#empresa",
+      "name": "RDF Express",
+      "alternateName": "RDF Express Frete e Transporte",
+      "description": "Frete e transporte de cargas em Taboão da Serra e toda a Grande São Paulo, com motoboy, carro de passeio, utilitário e caminhão HR.",
+      "url": "https://rdfexpress.netlify.app/",
+      "image": "https://rdfexpress.netlify.app/Img/preview-whatsapp.jpg",
+      "logo": "https://rdfexpress.netlify.app/Img/icone-512.png",
+      "telephone": "+5511984211001",
+      "email": "rdfexpress@hotmail.com",
+      "taxID": "08.064.881/0001-16",
+      "vatID": "08.064.881/0001-16",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Rio Grande do Sul, 75",
+        "addressLocality": "Taboão da Serra",
+        "addressRegion": "SP",
+        "postalCode": "06757-110",
+        "addressCountry": "BR"
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }],
+      "areaServed": [
+        { "@type": "City", "name": "Taboão da Serra" },
+        { "@type": "City", "name": "São Paulo" },
+        { "@type": "City", "name": "Embu das Artes" },
+        { "@type": "City", "name": "Cotia" },
+        { "@type": "City", "name": "Osasco" },
+        { "@type": "AdministrativeArea", "name": "Região Metropolitana de São Paulo" }
+      ],
+      "knowsLanguage": "pt-BR",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Serviços de frete e transporte",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motoboy — entrega de documentos e pequenos volumes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Frete com carro de passeio — cargas leves e bagagens" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Frete com utilitário ou picape — cargas médias e mudanças pequenas" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Frete com caminhão HR — mudanças completas e grandes volumes" } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Identidade do site em si (ajuda o Google a montar o nome nos resultados) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://rdfexpress.netlify.app/#site",
+      "url": "https://rdfexpress.netlify.app/",
+      "name": "RDF Express",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://rdfexpress.netlify.app/#empresa" }
+    }
+    </script>
 </head>
 <body>
 
@@ -589,7 +753,7 @@
 <!-- ── Header ── -->
 <header>
     <div class="header-inner">
-        <a href="#" class="logo">
+        <a href="/" class="logo" aria-label="RDF Express — página inicial">
             <span class="logo-badge">RDF</span>
             <span>
                 <span class="logo-text">Express</span>
@@ -725,23 +889,23 @@
         </div>
         <div class="gallery-grid">
             <div class="gal-item featured reveal">
-                <img src="Img/IMG_20240924_130356.jpg" alt="Transporte de carga frágil embalada com segurança" loading="lazy">
+                <img src="Img/carga-fragil-embalada.webp" width="900" height="506" alt="Carga frágil embalada com proteção total para transporte em Taboão da Serra" loading="lazy" decoding="async">
                 <div class="gal-overlay"><span class="gal-label">Carga frágil — embalagem com proteção total</span></div>
             </div>
             <div class="gal-item reveal" style="transition-delay:.1s">
-                <img src="Img/IMG-20260111-WA0006.jpeg" alt="Carga volumosa coberta com lona azul" loading="lazy">
+                <img src="Img/carga-coberta-lona.webp" width="760" height="428" alt="Carga volumosa coberta com lona azul em veículo de frete" loading="lazy" decoding="async">
                 <div class="gal-overlay"><span class="gal-label">Proteção com lona</span></div>
             </div>
             <div class="gal-item reveal" style="transition-delay:.15s">
-                <img src="Img/unnamed (1).webp" alt="Transporte de blocos de isopor" loading="lazy">
+                <img src="Img/blocos-isopor.webp" width="287" height="510" alt="Transporte de blocos de isopor — volumes grandes e leves" loading="lazy" decoding="async">
                 <div class="gal-overlay"><span class="gal-label">Volumes grandes e leves</span></div>
             </div>
             <div class="gal-item reveal" style="transition-delay:.2s">
-                <img src="Img/IMG_20250618_111343.jpg" alt="Transporte de cabos e tubos" loading="lazy">
+                <img src="Img/cabos-e-tubos.webp" width="574" height="766" alt="Transporte de cabos e tubos — material elétrico e hidráulico" loading="lazy" decoding="async">
                 <div class="gal-overlay"><span class="gal-label">Material elétrico e hidráulico</span></div>
             </div>
             <div class="gal-item reveal" style="transition-delay:.25s">
-                <img src="Img/unnamed (2).webp" alt="Transporte de perfis e mangueiras" loading="lazy">
+                <img src="Img/perfis-e-mangueiras.webp" width="287" height="510" alt="Transporte de perfis e mangueiras — materiais de obra" loading="lazy" decoding="async">
                 <div class="gal-overlay"><span class="gal-label">Materiais de obra</span></div>
             </div>
         </div>
@@ -763,7 +927,7 @@
                     <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
                 <div>
-                    <h4>Carga tratada com cuidado</h4>
+                    <h3>Carga tratada com cuidado</h3>
                     <p>Amarração correta e manuseio cuidadoso, especialmente para itens frágeis, volumosos ou irregulares.</p>
                 </div>
             </div>
@@ -773,7 +937,7 @@
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div>
-                    <h4>Pontualidade no horário</h4>
+                    <h3>Pontualidade no horário</h3>
                     <p>Saímos no horário combinado. O seu prazo é o nosso compromisso — sempre.</p>
                 </div>
             </div>
@@ -783,7 +947,7 @@
                     <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
                 <div>
-                    <h4>Grande São Paulo e região</h4>
+                    <h3>Grande São Paulo e região</h3>
                     <p>Taboão da Serra, São Paulo e toda a região metropolitana. Outras cidades mediante consulta.</p>
                 </div>
             </div>
@@ -793,7 +957,7 @@
                     <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 011.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.09v2.83z"/></svg>
                 </div>
                 <div>
-                    <h4>Atendimento direto, sem enrolação</h4>
+                    <h3>Atendimento direto, sem enrolação</h3>
                     <p>Fale diretamente com quem faz o frete pelo WhatsApp — sem call center, sem fila de espera.</p>
                 </div>
             </div>
@@ -801,6 +965,133 @@
         </div>
     </div>
 </section>
+
+<!-- ── Perguntas frequentes ── -->
+<section class="faq-section" id="duvidas">
+    <div class="section-inner">
+        <div class="section-header">
+            <span class="section-tag">Dúvidas frequentes</span>
+            <h2 class="section-title">Perguntas que mais recebemos</h2>
+            <p class="section-sub">Se a sua dúvida não estiver aqui, é só chamar no WhatsApp — respondemos rápido.</p>
+        </div>
+
+        <div class="faq-list">
+
+            <details class="faq-item reveal">
+                <summary>Quais regiões vocês atendem?</summary>
+                <div class="faq-answer">
+                    Atendemos Taboão da Serra, a cidade de São Paulo e toda a região metropolitana —
+                    incluindo Embu das Artes, Cotia, Osasco, Itapecerica da Serra e cidades vizinhas.
+                    Fretes para outras cidades e para fora do estado são feitos mediante consulta.
+                </div>
+            </details>
+
+            <details class="faq-item reveal" style="transition-delay:.05s">
+                <summary>Que tipos de veículo vocês têm?</summary>
+                <div class="faq-answer">
+                    Quatro opções, para não pagar por espaço que você não vai usar:
+                    <strong>moto</strong> (documentos e pequenos volumes),
+                    <strong>carro de passeio</strong> (cargas leves, compras e bagagens),
+                    <strong>utilitário ou picape</strong> (cargas médias, mudanças pequenas e material de construção)
+                    e <strong>caminhão HR</strong> (mudanças completas, equipamentos e grandes volumes).
+                </div>
+            </details>
+
+            <details class="faq-item reveal" style="transition-delay:.1s">
+                <summary>Como peço um orçamento?</summary>
+                <div class="faq-answer">
+                    Pelo WhatsApp, no <a href="https://wa.me/5511984211001?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20de%20frete." target="_blank" rel="noopener">(11) 98421-1001</a>,
+                    que é o caminho mais rápido. Também dá para ligar no mesmo número
+                    ou escrever para <a href="mailto:rdfexpress@hotmail.com">rdfexpress@hotmail.com</a>.
+                    O atendimento é de segunda a sexta, das 8h às 18h.
+                </div>
+            </details>
+
+            <details class="faq-item reveal" style="transition-delay:.15s">
+                <summary>Que informações preciso passar para receber o preço?</summary>
+                <div class="faq-answer">
+                    Quatro coisas resolvem: o que é a carga (e um peso ou tamanho aproximado),
+                    o endereço de coleta, o endereço de entrega e a data desejada.
+                    Se puder mandar uma foto da carga pelo WhatsApp, melhor ainda —
+                    o orçamento sai mais preciso e mais rápido.
+                </div>
+            </details>
+
+            <details class="faq-item reveal" style="transition-delay:.2s">
+                <summary>Vocês fazem mudança?</summary>
+                <div class="faq-answer">
+                    Sim. Mudanças pequenas — quarto, kitnet, poucos móveis — saem de utilitário ou picape.
+                    Mudanças completas vão de caminhão HR, com amarração profissional da carga.
+                </div>
+            </details>
+
+            <details class="faq-item reveal" style="transition-delay:.25s">
+                <summary>E se a carga for frágil ou de formato estranho?</summary>
+                <div class="faq-answer">
+                    É boa parte do que fazemos. Itens frágeis, volumosos ou de formato irregular
+                    recebem embalagem de proteção, cobertura com lona quando necessário e amarração
+                    adequada ao veículo. As fotos aqui do site são de cargas reais que transportamos.
+                </div>
+            </details>
+
+            <details class="faq-item reveal" style="transition-delay:.3s">
+                <summary>Com quem eu falo? Tem call center?</summary>
+                <div class="faq-answer">
+                    Não tem. Você fala direto com quem faz o frete, sem intermediário e sem fila de espera.
+                    É a mesma pessoa do orçamento até a entrega.
+                </div>
+            </details>
+
+        </div>
+    </div>
+</section>
+
+<!-- Mesmas perguntas acima, em formato que o Google lê.
+     ATENÇÃO: mudou uma resposta lá em cima? Mude aqui também, com o mesmo texto —
+     o Google só mostra a pergunta na busca se os dois estiverem iguais. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quais regiões vocês atendem?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Atendemos Taboão da Serra, a cidade de São Paulo e toda a região metropolitana — incluindo Embu das Artes, Cotia, Osasco, Itapecerica da Serra e cidades vizinhas. Fretes para outras cidades e para fora do estado são feitos mediante consulta." }
+    },
+    {
+      "@type": "Question",
+      "name": "Que tipos de veículo vocês têm?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Quatro opções, para não pagar por espaço que você não vai usar: moto (documentos e pequenos volumes), carro de passeio (cargas leves, compras e bagagens), utilitário ou picape (cargas médias, mudanças pequenas e material de construção) e caminhão HR (mudanças completas, equipamentos e grandes volumes)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Como peço um orçamento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pelo WhatsApp, no (11) 98421-1001, que é o caminho mais rápido. Também dá para ligar no mesmo número ou escrever para rdfexpress@hotmail.com. O atendimento é de segunda a sexta, das 8h às 18h." }
+    },
+    {
+      "@type": "Question",
+      "name": "Que informações preciso passar para receber o preço?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Quatro coisas resolvem: o que é a carga (e um peso ou tamanho aproximado), o endereço de coleta, o endereço de entrega e a data desejada. Se puder mandar uma foto da carga pelo WhatsApp, melhor ainda — o orçamento sai mais preciso e mais rápido." }
+    },
+    {
+      "@type": "Question",
+      "name": "Vocês fazem mudança?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. Mudanças pequenas — quarto, kitnet, poucos móveis — saem de utilitário ou picape. Mudanças completas vão de caminhão HR, com amarração profissional da carga." }
+    },
+    {
+      "@type": "Question",
+      "name": "E se a carga for frágil ou de formato estranho?",
+      "acceptedAnswer": { "@type": "Answer", "text": "É boa parte do que fazemos. Itens frágeis, volumosos ou de formato irregular recebem embalagem de proteção, cobertura com lona quando necessário e amarração adequada ao veículo. As fotos aqui do site são de cargas reais que transportamos." }
+    },
+    {
+      "@type": "Question",
+      "name": "Com quem eu falo? Tem call center?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não tem. Você fala direto com quem faz o frete, sem intermediário e sem fila de espera. É a mesma pessoa do orçamento até a entrega." }
+    }
+  ]
+}
+</script>
 
 <!-- ── Contato ── -->
 <section class="contact-section" id="contato">
@@ -872,7 +1163,7 @@
 <!-- ── Footer ── -->
 <footer>
     <div class="footer-inner">
-        <p>© 2025 RDF Express — Frete &amp; Transporte · CNPJ 08.064.881/0001-16</p>
+        <p>© <span id="ano-atual">2026</span> RDF Express — Frete &amp; Transporte · CNPJ 08.064.881/0001-16</p>
         <p>Taboão da Serra — SP · Grande São Paulo</p>
     </div>
 </footer>
@@ -889,12 +1180,20 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Rolagem suave para links internos. O "#" sozinho é ignorado —
+    // querySelector('#') quebra o script inteiro se passar direto.
     document.querySelectorAll('a[href^="#"]').forEach(a => {
+        const destino = a.getAttribute('href');
+        if (!destino || destino === '#') return;
         a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
+            const target = document.querySelector(destino);
             if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         });
     });
+
+    // Ano do rodapé sempre atual, sem precisar lembrar de editar
+    const anoEl = document.getElementById('ano-atual');
+    if (anoEl) anoEl.textContent = new Date().getFullYear();
 </script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+# RDF Express — Frete e Transporte
+# Site liberado para todos os buscadores.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://rdfexpress.netlify.app/sitemap.xml

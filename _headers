@@ -1,0 +1,18 @@
+# Configuração de cabeçalhos da Netlify.
+# Este arquivo NÃO aparece no site — ele diz ao servidor como entregar os arquivos.
+
+# Regras de segurança para todas as páginas
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+
+# Imagens ficam guardadas no navegador por 1 ano.
+# Trocou uma foto? Salve com NOME NOVO, senão o visitante antigo continua vendo a velha.
+/Img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# A página em si é sempre reconferida, para uma correção entrar no ar na hora
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
